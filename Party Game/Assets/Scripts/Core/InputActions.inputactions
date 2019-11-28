@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "222f8a3a-87cf-4b15-8985-8018cbea7936",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": ""
                 },
                 {
@@ -19,15 +19,15 @@
                     "id": "9d4d8588-9235-49bd-bfd8-dbb8335de8f1",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Jump",
                     "type": "Button",
                     "id": "282f621b-5bb2-4a90-89b6-549afa7f11d5",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
