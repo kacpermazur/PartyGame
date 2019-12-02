@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 namespace Player
 {
@@ -15,8 +12,9 @@ namespace Player
         public float rotationSpeed = 6.0f;
         public float jumpForce = 2.0f;
 
+        [SerializeField] private float distanceToGround = 2.0f;
+        
         private Vector2 _move;
-        private float _attack;
         private float _jump;
 
         private Rigidbody _rigidbody;
@@ -32,6 +30,16 @@ namespace Player
             Jump(_jump);
         }
 
+        private void OnEnable()
+        {
+            _rigidbody.isKinematic = false;
+        }
+
+        private void OnDisable()
+        {
+            _rigidbody.isKinematic = true;
+        }
+
         private void Movement(Vector2 direction)
         {
             Vector3 dir = new Vector3(direction.x,0,direction.y);
@@ -41,24 +49,24 @@ namespace Player
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
                 
-                transform.position += transform.right * movementSpeed * Time.deltaTime;
+                transform.position += movementSpeed * Time.deltaTime * transform.right;
             }
-
         }
 
         public void Jump(float jump)
         {
-            _rigidbody.AddForce(Vector3.up * jump * jumpForce, ForceMode.Impulse);
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down),
+                out hit, distanceToGround))
+            {
+                _rigidbody.AddForce(jump * jumpForce * Vector3.up, ForceMode.Impulse);
+            }
         }
 
         public void OnMove(InputAction.CallbackContext context)
         {
             _move = context.ReadValue<Vector2>();
-        }
-
-        public void OnAttack(InputAction.CallbackContext context)
-        {
-            _attack = context.ReadValue<float>();
         }
 
         public void OnJump(InputAction.CallbackContext context)

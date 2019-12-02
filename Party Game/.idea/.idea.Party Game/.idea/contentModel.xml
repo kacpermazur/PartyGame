@@ -11,6 +11,9 @@
             <e p="InputActions.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
+            <e p="CollisionListener.cs" t="Include" />
+            <e p="PlayerAttack.cs" t="Include" />
+            <e p="PlayerManager.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
           </e>
         </e>
