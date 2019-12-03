@@ -32,12 +32,12 @@ namespace Player
 
         private void OnEnable()
         {
-            _rigidbody.isKinematic = false;
+            //_rigidbody.isKinematic = false;
         }
 
         private void OnDisable()
         {
-            _rigidbody.isKinematic = true;
+            //_rigidbody.isKinematic = true;
         }
 
         private void Movement(Vector2 direction)

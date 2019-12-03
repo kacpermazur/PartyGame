@@ -1,6 +1,7 @@
 ﻿using System;
 using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -14,7 +15,7 @@ namespace Player
         [HideInInspector] public string playerName;
         [HideInInspector] public GameObject playerInstance;
         [HideInInspector] public int numberOfWins;
-
+        
         private PlayerMovement _movement;
         private PlayerAttack _attack;
         private CollisionListener _listener;
@@ -58,8 +59,10 @@ namespace Player
             playerInstance.transform.position = SpawnPoint.position;
             playerInstance.transform.rotation = SpawnPoint.rotation;
 
-            playerInstance.SetActive(false);
-            playerInstance.SetActive(true);
+            
+
+            // playerInstance.SetActive(false);
+            //playerInstance.SetActive(true);
         }
     }
 }

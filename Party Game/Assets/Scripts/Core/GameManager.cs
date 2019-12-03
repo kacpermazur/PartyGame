@@ -4,12 +4,14 @@ using UnityEngine;
 using Player;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class GameManager : MonoBehaviour
 {
     public int numberOfRoundsToWin = 3;
     public float startCountDown = 3.0f;
-    public float endCountDown = 3.0f;
+    public float endCountDown = 10.0f;
 
     public TextMeshProUGUI gameMessage;
     
@@ -22,15 +24,77 @@ public class GameManager : MonoBehaviour
 
     private PlayerManager _roundWinner;
     private PlayerManager _gameWinner;
-    
+
+    private PlayerInputManager _playerInputManager;
+    private PlayerInput[] _playerSchemes;
+
+    private void Awake()
+    {
+        _playerInputManager = PlayerInputManager.instance;
+        
+    }
+
     private void Start()
     {
+        gameMessage.text = "Waiting For Players!";
+        
         _startWait = new WaitForSeconds(startCountDown);
         _endWait = new WaitForSeconds(endCountDown);
-        
+
         InitializeAllPlayer();
+        
+        //SetControlSchemes();
 
         StartCoroutine(Game());
+    }
+
+    private void SetControlSchemes()
+    {
+        var player1 = PlayerInput.all[0];
+        var player2 = PlayerInput.all[1];
+        var player3 = PlayerInput.all[2];
+        var player4 = PlayerInput.all[3];
+        
+        player1.user.UnpairDevices();
+        player2.user.UnpairDevices();
+        player3.user.UnpairDevices();
+        player4.user.UnpairDevices();
+        
+        int gamepadCount = Gamepad.all.Count;
+        
+        if (gamepadCount >= 4)
+        {
+            Debug.Log("4");
+            InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[3], user: player3.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[4], user: player4.user);
+            
+ 
+            player1.user.ActivateControlScheme("Gamepad");
+            player2.user.ActivateControlScheme("Gamepad");
+            player3.user.ActivateControlScheme("Gamepad");
+            player4.user.ActivateControlScheme("Gamepad");
+        }
+        else if (gamepadCount >= 3)
+        {
+            Debug.Log("3");
+            InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
+            InputUser.PerformPairingWithDevice(Keyboard.current, user: player4.user);
+            
+ 
+            player1.user.ActivateControlScheme("Gamepad");
+            player2.user.ActivateControlScheme("Gamepad");
+            player3.user.ActivateControlScheme("Gamepad");
+            player4.user.ActivateControlScheme("Keyboard&Mouse");
+        }
+        else
+        {
+            Debug.Log("error");
+        }
+        
     }
 
     void InitializeAllPlayer()
@@ -39,7 +103,7 @@ public class GameManager : MonoBehaviour
         {
             players[i].playerInstance =
                 Instantiate(playerPrefab, players[i].SpawnPoint.position, players[i].SpawnPoint.rotation);
-            players[i].playerID = i + 1;
+            players[i].playerID = i;
             players[i].Initialize();
         }
     }
@@ -146,6 +210,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartRound()
     {
         ResetPlayers();
+        SetControlSchemes();
         DisablePlayersControls();
         _currentRound++;
 
