@@ -58,11 +58,9 @@ namespace Player
         {
             playerInstance.transform.position = SpawnPoint.position;
             playerInstance.transform.rotation = SpawnPoint.rotation;
-
             
-
-            // playerInstance.SetActive(false);
-            //playerInstance.SetActive(true);
+            playerInstance.SetActive(false);
+            playerInstance.SetActive(true);
         }
     }
 }

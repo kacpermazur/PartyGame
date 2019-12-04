@@ -174,13 +174,13 @@ public class GameManager : MonoBehaviour
 
         if (_roundWinner != null)
             message = _roundWinner.playerName + "Wins The Round!";
-        message += "\n\n\n\n";
+        message += "\n\n";
         
         message += "SCORES: \n";
         
         for (int i = 0; i < players.Length; i++)
         {
-            message += players[i].playerName + ": " + players[i].numberOfWins + " Wins/n";
+            message += players[i].playerName + ": " + players[i].numberOfWins + " Wins\n";
         }
 
         if (_gameWinner != null)
@@ -242,11 +242,9 @@ public class GameManager : MonoBehaviour
         _gameWinner = null;
         _gameWinner = GameWinner();
         
-        if (_roundWinner != null)
-            _roundWinner.numberOfWins++;
-        
+
         gameMessage.text = RoundEndMessage();
 
-        yield return endCountDown;
+        yield return _endWait;
     }
 }
