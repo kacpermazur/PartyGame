@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("4");
             InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
             InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[3], user: player3.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[4], user: player4.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
+            InputUser.PerformPairingWithDevice(Gamepad.all[3], user: player4.user);
             
  
             player1.user.ActivateControlScheme("Gamepad");
