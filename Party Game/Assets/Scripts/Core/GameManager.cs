@@ -9,12 +9,14 @@ using UnityEngine.InputSystem.Users;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Settings")]
     public int numberOfRoundsToWin = 3;
     public float startCountDown = 3.0f;
     public float endCountDown = 10.0f;
 
+    [Header("Game Setup")]
+    public ScalingMiniGame _ScalingMiniGame;
     public TextMeshProUGUI gameMessage;
-    
     public GameObject playerPrefab;
     public PlayerManager[] players;
 
@@ -215,6 +217,7 @@ public class GameManager : MonoBehaviour
         _currentRound++;
 
         gameMessage.text = "Round: " + _currentRound;
+        
         yield return _startWait;
     }
 
@@ -222,11 +225,14 @@ public class GameManager : MonoBehaviour
     {
         EnablePlayersControls();
         gameMessage.text = String.Empty;
-
+        
+        _ScalingMiniGame.StartMiniGame();
+        
         while (!LastPlayerCheck())
         {
             yield return null;
         }
+        _ScalingMiniGame.RestMiniGame();
     }
 
     private IEnumerator EndRound()
@@ -244,7 +250,7 @@ public class GameManager : MonoBehaviour
         
 
         gameMessage.text = RoundEndMessage();
-
+        
         yield return _endWait;
     }
 }
