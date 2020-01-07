@@ -24,6 +24,9 @@
             <e p="PlayerManager.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
           </e>
+          <e p="Sound" t="Include">
+            <e p="SoundClip.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="UIGame.cs" t="Include" />
             <e p="UIMainMenu.cs" t="Include" />
