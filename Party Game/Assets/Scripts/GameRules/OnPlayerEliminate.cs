@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Player;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ public class OnPlayerEliminate : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerManager>().isAlive = false;
+            int playerID = other.GetComponent<PlayerMovement>().playerID;
+            GameManager.instance.players[playerID].EliminatePlayer();
         }
     }
 }

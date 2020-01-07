@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09c2c84f17e8b84b97cfc0d6773471b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeLimit: 10
+  TimeLimit: 15
   SmoothTime: 0.1
   ScaleXZ: 1.5
   Message: {fileID: 976556715}
@@ -460,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900235559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.25, y: 0, z: 0}
+  m_LocalPosition: {x: -97.4, y: 0, z: 9.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1493784221}
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_NotificationBehavior: 0
   m_MaxPlayerCount: -1
   m_AllowJoining: 0
-  m_JoinBehavior: 2
+  m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -585,6 +585,7 @@ MonoBehaviour:
     SpawnPoint: {fileID: 867141001}
     DeathPoint: {fileID: 1493784221}
     playerID: 0
+    isAlive: 0
     playerName: 
     playerInstance: {fileID: 0}
     numberOfWins: 0
@@ -592,6 +593,7 @@ MonoBehaviour:
     SpawnPoint: {fileID: 1974331616}
     DeathPoint: {fileID: 679969048}
     playerID: 0
+    isAlive: 0
     playerName: 
     playerInstance: {fileID: 0}
     numberOfWins: 0
@@ -599,6 +601,7 @@ MonoBehaviour:
     SpawnPoint: {fileID: 1002671875}
     DeathPoint: {fileID: 444606534}
     playerID: 0
+    isAlive: 0
     playerName: 
     playerInstance: {fileID: 0}
     numberOfWins: 0
@@ -606,6 +609,7 @@ MonoBehaviour:
     SpawnPoint: {fileID: 163682856}
     DeathPoint: {fileID: 1343023614}
     playerID: 0
+    isAlive: 0
     playerName: 
     playerInstance: {fileID: 0}
     numberOfWins: 0
@@ -1328,6 +1332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599976211944460363, guid: b7c6a4034bd01214b84169f704f1e9f3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8042340122037636504, guid: b7c6a4034bd01214b84169f704f1e9f3,
         type: 3}

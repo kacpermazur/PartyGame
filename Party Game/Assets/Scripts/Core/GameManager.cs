@@ -7,249 +7,262 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-public class GameManager : MonoBehaviour
+namespace Core
 {
-    [Header("Game Settings")]
-    public int numberOfRoundsToWin = 3;
-    public float startCountDown = 3.0f;
-    public float endCountDown = 10.0f;
-
-    [Header("Game Setup")]
-    public ScalingMiniGame _ScalingMiniGame;
-    public TextMeshProUGUI gameMessage;
-    public GameObject playerPrefab;
-    public PlayerManager[] players;
-
-    private int _currentRound;
-    private WaitForSeconds _startWait;
-    private WaitForSeconds _endWait;
-
-    private PlayerManager _roundWinner;
-    private PlayerManager _gameWinner;
-
-    private PlayerInputManager _playerInputManager;
-    private PlayerInput[] _playerSchemes;
-
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        _playerInputManager = PlayerInputManager.instance;
-    }
-
-    private void Start()
-    {
-        gameMessage.text = "Waiting For Players!";
+        private static readonly string name = typeof(GameManager).Name;
+        private static GameManager _instance;
         
-        _startWait = new WaitForSeconds(startCountDown);
-        _endWait = new WaitForSeconds(endCountDown);
-
-        InitializeAllPlayer();
+        public static GameManager instance => _instance; 
         
-        //SetControlSchemes();
+        [Header("Game Settings")] public int numberOfRoundsToWin = 3;
+        public float startCountDown = 3.0f;
+        public float endCountDown = 10.0f;
 
-        StartCoroutine(Game());
-    }
+        [Header("Game Setup")] public ScalingMiniGame _ScalingMiniGame;
+        public TextMeshProUGUI gameMessage;
+        public GameObject playerPrefab;
+        public PlayerManager[] players;
 
-    private void SetControlSchemes()
-    {
-        var player1 = PlayerInput.all[0];
-        var player2 = PlayerInput.all[1];
-        var player3 = PlayerInput.all[2];
-        var player4 = PlayerInput.all[3];
-        
-        player1.user.UnpairDevices();
-        player2.user.UnpairDevices();
-        player3.user.UnpairDevices();
-        player4.user.UnpairDevices();
-        
-        int gamepadCount = Gamepad.all.Count;
-        
-        if (gamepadCount >= 4)
-        {
-            Debug.Log("4");
-            InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[3], user: player4.user);
-            
- 
-            player1.user.ActivateControlScheme("Gamepad");
-            player2.user.ActivateControlScheme("Gamepad");
-            player3.user.ActivateControlScheme("Gamepad");
-            player4.user.ActivateControlScheme("Gamepad");
-        }
-        else if (gamepadCount >= 3)
-        {
-            Debug.Log("3");
-            InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
-            InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
-            InputUser.PerformPairingWithDevice(Keyboard.current, user: player4.user);
-            
- 
-            player1.user.ActivateControlScheme("Gamepad");
-            player2.user.ActivateControlScheme("Gamepad");
-            player3.user.ActivateControlScheme("Gamepad");
-            player4.user.ActivateControlScheme("Keyboard&Mouse");
-        }
-        else
-        {
-            
-            Debug.Log("error");
-        }
-        
-    }
+        private int _currentRound;
+        private WaitForSeconds _startWait;
+        private WaitForSeconds _endWait;
 
-    void InitializeAllPlayer()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].playerInstance =
-                Instantiate(playerPrefab, players[i].SpawnPoint.position, players[i].SpawnPoint.rotation);
-            players[i].playerID = i;
-            players[i].Initialize();
-        }
-    }
+        private PlayerManager _roundWinner;
+        private PlayerManager _gameWinner;
 
-    private void ResetPlayers()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].Reset();
-        }
-    }
-    private void EnablePlayersControls()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].EnableControls();
-        }
-    }
+        private PlayerInputManager _playerInputManager;
+        private PlayerInput[] _playerSchemes;
 
-    private void DisablePlayersControls()
-    {
-        for (int i = 0; i < players.Length; i++)
+        private void Awake()
         {
-            players[i].DisableControls();
-        }
-    }
-
-    private bool LastPlayerCheck()
-    {
-        int numberOfPlayersLeft = 0;
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i].isAlive)
+            if (_instance == null)
             {
-                numberOfPlayersLeft++;
+                _instance = this;
+            }
+            
+            _playerInputManager = PlayerInputManager.instance;
+        }
+
+        private void Start()
+        {
+            gameMessage.text = "Waiting For Players!";
+
+            _startWait = new WaitForSeconds(startCountDown);
+            _endWait = new WaitForSeconds(endCountDown);
+
+            InitializeAllPlayer();
+
+            //SetControlSchemes();
+
+            StartCoroutine(Game());
+        }
+
+        private void SetControlSchemes()
+        {
+            var player1 = PlayerInput.all[0];
+            var player2 = PlayerInput.all[1];
+            var player3 = PlayerInput.all[2];
+            var player4 = PlayerInput.all[3];
+
+            player1.user.UnpairDevices();
+            player2.user.UnpairDevices();
+            player3.user.UnpairDevices();
+            player4.user.UnpairDevices();
+
+            int gamepadCount = Gamepad.all.Count;
+
+            if (gamepadCount >= 4)
+            {
+                Debug.Log("4");
+                InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
+                InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
+                InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
+                InputUser.PerformPairingWithDevice(Gamepad.all[3], user: player4.user);
+
+
+                player1.user.ActivateControlScheme("Gamepad");
+                player2.user.ActivateControlScheme("Gamepad");
+                player3.user.ActivateControlScheme("Gamepad");
+                player4.user.ActivateControlScheme("Gamepad");
+            }
+            else if (gamepadCount >= 3)
+            {
+                Debug.Log("3");
+                InputUser.PerformPairingWithDevice(Gamepad.all[0], user: player1.user);
+                InputUser.PerformPairingWithDevice(Gamepad.all[1], user: player2.user);
+                InputUser.PerformPairingWithDevice(Gamepad.all[2], user: player3.user);
+                InputUser.PerformPairingWithDevice(Keyboard.current, user: player4.user);
+
+
+                player1.user.ActivateControlScheme("Gamepad");
+                player2.user.ActivateControlScheme("Gamepad");
+                player3.user.ActivateControlScheme("Gamepad");
+                player4.user.ActivateControlScheme("Keyboard&Mouse");
+            }
+            else
+            {
+
+                Debug.Log("error");
+            }
+
+        }
+
+        void InitializeAllPlayer()
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].playerInstance =
+                    Instantiate(playerPrefab, players[i].SpawnPoint.position, players[i].SpawnPoint.rotation);
+                players[i].playerID = i;
+                players[i].Initialize();
             }
         }
 
-        return numberOfPlayersLeft <= 1;
-    }
-
-    private PlayerManager RoundWinner()
-    {
-        for (int i = 0; i < players.Length; i++)
+        private void ResetPlayers()
         {
-            if (players[i].isAlive)
-                return players[i];
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].Reset();
+            }
         }
 
-        return null;
-    }
-    
-    private PlayerManager GameWinner()
-    {
-        for (int i = 0; i < players.Length; i++)
+        private void EnablePlayersControls()
         {
-            if (players[i].numberOfWins == numberOfRoundsToWin)
-                return players[i];
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].EnableControls();
+            }
         }
 
-        return null;
-    }
-
-    private String RoundEndMessage()
-    {
-        string message = "Draw";
-
-        if (_roundWinner != null)
-            message = _roundWinner.playerName + "Wins The Round!";
-        message += "\n\n";
-        
-        message += "SCORES: \n";
-        
-        for (int i = 0; i < players.Length; i++)
+        private void DisablePlayersControls()
         {
-            message += players[i].playerName + ": " + players[i].numberOfWins + " Wins\n";
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].DisableControls();
+            }
         }
 
-        if (_gameWinner != null)
+        private bool LastPlayerCheck()
         {
-            message = _gameWinner.playerName + " WINS THE GAME!";
+            int numberOfPlayersLeft = 0;
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i].isAlive)
+                {
+                    numberOfPlayersLeft++;
+                }
+            }
+
+            return numberOfPlayersLeft <= 1;
         }
-        
-        return message;
-    }
 
-    private IEnumerator Game()
-    {
-        yield return StartCoroutine(StartRound());
-        yield return StartCoroutine(InRound());
-        yield return StartCoroutine(EndRound());
-
-        if (_gameWinner != null)
+        private PlayerManager RoundWinner()
         {
-            SceneManager.LoadScene(0); // ToDO: Add Mini Game Change
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i].isAlive)
+                    return players[i];
+            }
+
+            return null;
         }
-        else
+
+        private PlayerManager GameWinner()
         {
-            StartCoroutine(Game());
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i].numberOfWins == numberOfRoundsToWin)
+                    return players[i];
+            }
+
+            return null;
         }
-    }
 
-    private IEnumerator StartRound()
-    {
-        ResetPlayers();
-        DisablePlayersControls();
-        _currentRound++;
-
-        gameMessage.text = "Round: " + _currentRound;
-        
-        yield return _startWait;
-    }
-
-    private IEnumerator InRound()
-    {
-        EnablePlayersControls();
-        gameMessage.text = String.Empty;
-        
-        _ScalingMiniGame.StartMiniGame();
-        
-        while (!LastPlayerCheck())
+        private String RoundEndMessage()
         {
-            yield return null;
+            string message = "Draw";
+
+            if (_roundWinner != null)
+                message = _roundWinner.playerName + "Wins The Round!";
+            message += "\n\n";
+
+            message += "SCORES: \n";
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                message += players[i].playerName + ": " + players[i].numberOfWins + " Wins\n";
+            }
+
+            if (_gameWinner != null)
+            {
+                message = _gameWinner.playerName + " WINS THE GAME!";
+            }
+
+            return message;
         }
-        _ScalingMiniGame.RestMiniGame();
-    }
 
-    private IEnumerator EndRound()
-    {
-        DisablePlayersControls();
+        private IEnumerator Game()
+        {
+            yield return StartCoroutine(StartRound());
+            yield return StartCoroutine(InRound());
+            yield return StartCoroutine(EndRound());
 
-        _roundWinner = null;
-        _roundWinner = RoundWinner();
+            if (_gameWinner != null)
+            {
+                SceneManager.LoadScene(0); // ToDO: Add Mini Game Change
+            }
+            else
+            {
+                StartCoroutine(Game());
+            }
+        }
 
-        if (_roundWinner != null)
-            _roundWinner.numberOfWins++;
+        private IEnumerator StartRound()
+        {
+            ResetPlayers();
+            DisablePlayersControls();
+            _currentRound++;
 
-        _gameWinner = null;
-        _gameWinner = GameWinner();
-        
+            gameMessage.text = "Round: " + _currentRound;
 
-        gameMessage.text = RoundEndMessage();
-        
-        yield return _endWait;
+            yield return _startWait;
+        }
+
+        private IEnumerator InRound()
+        {
+            EnablePlayersControls();
+            gameMessage.text = String.Empty;
+
+            _ScalingMiniGame.StartMiniGame();
+
+            while (!LastPlayerCheck())
+            {
+                yield return null;
+            }
+
+            _ScalingMiniGame.RestMiniGame();
+        }
+
+        private IEnumerator EndRound()
+        {
+            DisablePlayersControls();
+
+            _roundWinner = null;
+            _roundWinner = RoundWinner();
+
+            if (_roundWinner != null)
+                _roundWinner.numberOfWins++;
+
+            _gameWinner = null;
+            _gameWinner = GameWinner();
+
+
+            gameMessage.text = RoundEndMessage();
+
+            yield return _endWait;
+        }
     }
 }

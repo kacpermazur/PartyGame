@@ -41,6 +41,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0-preview.3/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectSettings/AudioManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CollisionListener.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/TEST.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0-preview.3/InputSystem/Utilities/ReadOnlyArray.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,10 +60,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CollisionListener.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/TEST.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
       </list>
     </option>
   </component>
@@ -120,7 +122,7 @@
       <workItem from="1575391638254" duration="2537000" />
       <workItem from="1575394265803" duration="248000" />
       <workItem from="1575430492879" duration="5329000" />
-      <workItem from="1578353761309" duration="3796000" />
+      <workItem from="1578353761309" duration="8893000" />
     </task>
     <servers />
   </component>
