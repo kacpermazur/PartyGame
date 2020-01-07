@@ -12,9 +12,6 @@ public class ScalingMiniGame : MonoBehaviour
     [SerializeField] private float SmoothTime;
     [SerializeField] private float ScaleXZ;
 
-    [Header("UI Display")]
-    [SerializeField] private TextMeshProUGUI Message;
-
     [Header("Platform Constraints")]
     [SerializeField] private float XZScaleConstraint;
 

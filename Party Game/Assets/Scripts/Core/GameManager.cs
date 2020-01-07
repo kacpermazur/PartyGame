@@ -62,7 +62,8 @@ namespace Core
             _endWait = new WaitForSeconds(endCountDown);
             
             InitializeAllPlayer();
-            //SetControlSchemes();
+            DisablePlayersControls();
+            
         }
 
         public void StartGame()
@@ -71,6 +72,7 @@ namespace Core
             _uiManger.InGameUI.ChangeMessageText("Waiting For Players!");
                 
             _soundManager.PlaySound("music", SoundManager.SoundType.MUSIC);
+            SetControlSchemes();
             StartCoroutine(Game());
         }
 
@@ -101,6 +103,8 @@ namespace Core
                 player2.user.ActivateControlScheme("Gamepad");
                 player3.user.ActivateControlScheme("Gamepad");
                 player4.user.ActivateControlScheme("Gamepad");
+                
+                Debug.Log("4 Controllers SET!");
             }
             else if (gamepadCount >= 3)
             {

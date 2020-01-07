@@ -14,36 +14,37 @@ namespace Player
         
         public float knockbackForce = 10.0f;
 
-        private bool _pressed;
-        private bool _released;
+        private bool _pressedAttack;
+        private bool _releasedAttack;
 
         public void CollisionDetected(Collider other)
         {
-            if (_pressed==true && _released==false)
+            if (_pressedAttack==true && _releasedAttack==false)
             {
-                _pressed = false;
-                _released = true;
+                _pressedAttack = false;
+                _releasedAttack = true;
                 
                 Debug.Log("ATTACK");
 
-                other.gameObject.GetComponent<Rigidbody>().AddRelativeForce(transform.right * knockbackForce, ForceMode.Impulse);
+                other.gameObject.GetComponent<Rigidbody>().AddForce(transform.right * knockbackForce, ForceMode.Impulse);
             }
         }
-
+        
         public void OnAttack(InputAction.CallbackContext context)
         {
             if(context.started)
             {
-                _pressed = true;
-                _released = false;
+                _pressedAttack = true;
+                _releasedAttack = false;
                 GameManager.instance.SoundManager.PlaySound("attack", SoundManager.SoundType.SFX);
             }
 
             if (context.canceled)
             {
-                _pressed = false;
-                _released = true;
+                _pressedAttack = false;
+                _releasedAttack = true;
             }
         }
+     
     }
 }
