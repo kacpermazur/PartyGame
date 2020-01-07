@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 namespace UI.Panel
@@ -56,7 +57,8 @@ namespace UI.Panel
 
         private void OnBtnStartClicked()
         {
-            
+            OpenPanel(_uiGame);
+            GameManager.instance.StartGame();
         }
         
         private void OnBtnExitClicked()

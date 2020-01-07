@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using TMPro;
 using UnityEngine;
 
@@ -75,7 +76,7 @@ public class ScalingMiniGame : MonoBehaviour
                 time--;
 
                 var timespan = TimeSpan.FromSeconds(time);
-                Message.text = timespan.ToString(@"mm\:ss");
+                GameManager.instance.UiManager.InGameUI.ChangeTimeText(timespan.ToString(@"mm\:ss"));
             }
 
             isFinished = IsScaledFully();

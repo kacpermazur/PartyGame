@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Player;
 using TMPro;
+using UI.Panel;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -11,17 +12,17 @@ namespace Core
 {
     public class GameManager : MonoBehaviour
     {
-        private static readonly string name = typeof(GameManager).Name;
         private static GameManager _instance;
+        [SerializeField] private UIManager _uiManger;
         
-        public static GameManager instance => _instance; 
+        public static GameManager instance => _instance;
+        public UIManager UiManager => _uiManger;
         
         [Header("Game Settings")] public int numberOfRoundsToWin = 3;
         public float startCountDown = 3.0f;
         public float endCountDown = 10.0f;
 
         [Header("Game Setup")] public ScalingMiniGame _ScalingMiniGame;
-        public TextMeshProUGUI gameMessage;
         public GameObject playerPrefab;
         public PlayerManager[] players;
 
@@ -43,19 +44,25 @@ namespace Core
             }
             
             _playerInputManager = PlayerInputManager.instance;
+            _uiManger.Initialize();
+            _uiManger.OpenPanel(_uiManger.MainMenuUI);
         }
 
         private void Start()
         {
-            gameMessage.text = "Waiting For Players!";
-
             _startWait = new WaitForSeconds(startCountDown);
             _endWait = new WaitForSeconds(endCountDown);
-
+            
             InitializeAllPlayer();
-
             //SetControlSchemes();
+        }
 
+        public void StartGame()
+        {
+            _uiManger.OpenPanel(_uiManger.InGameUI);
+            _uiManger.InGameUI.ChangeMessageText("Waiting For Players!");
+                
+            
             StartCoroutine(Game());
         }
 
@@ -196,11 +203,6 @@ namespace Core
                 message += players[i].playerName + ": " + players[i].numberOfWins + " Wins\n";
             }
 
-            if (_gameWinner != null)
-            {
-                message = _gameWinner.playerName + " WINS THE GAME!";
-            }
-
             return message;
         }
 
@@ -226,7 +228,8 @@ namespace Core
             DisablePlayersControls();
             _currentRound++;
 
-            gameMessage.text = "Round: " + _currentRound;
+            string round = "Round: " + _currentRound;
+            _uiManger.InGameUI.ChangeMessageText(round);
 
             yield return _startWait;
         }
@@ -234,7 +237,7 @@ namespace Core
         private IEnumerator InRound()
         {
             EnablePlayersControls();
-            gameMessage.text = String.Empty;
+            _uiManger.InGameUI.ChangeMessageText(String.Empty);
 
             _ScalingMiniGame.StartMiniGame();
 
@@ -258,9 +261,16 @@ namespace Core
 
             _gameWinner = null;
             _gameWinner = GameWinner();
-
-
-            gameMessage.text = RoundEndMessage();
+            
+            _uiManger.InGameUI.ChangeMessageText(RoundEndMessage());
+            
+            if (_gameWinner != null)
+            {
+                _uiManger.OpenPanel(_uiManger.WinnerUI);
+                
+                string winner = _gameWinner.playerName + " WINS THE GAME!";
+                _uiManger.WinnerUI.ChangeWinnerText(winner);
+            }
 
             yield return _endWait;
         }
