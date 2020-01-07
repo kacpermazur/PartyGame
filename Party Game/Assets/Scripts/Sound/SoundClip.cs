@@ -10,7 +10,6 @@ namespace Sound
         public bool loop;
         
         [Range(0.0f, 1.0f)] public float volume;
-        [Range(0.0f, 1.0f)] public float pitch;
         [Range(0.0f, 1.0f)] public float spacialBlend;
 
         [HideInInspector] public AudioSource source;
