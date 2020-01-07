@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _playerInputManager = PlayerInputManager.instance;
-        
     }
 
     private void Start()
@@ -94,6 +93,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            
             Debug.Log("error");
         }
         
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < players.Length; i++)
         {
-            if (players[i].playerInstance.activeSelf)
+            if (players[i].isAlive)
             {
                 numberOfPlayersLeft++;
             }
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
-            if (players[i].playerInstance.activeSelf)
+            if (players[i].isAlive)
                 return players[i];
         }
 
@@ -212,7 +212,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartRound()
     {
         ResetPlayers();
-        SetControlSchemes();
         DisablePlayersControls();
         _currentRound++;
 

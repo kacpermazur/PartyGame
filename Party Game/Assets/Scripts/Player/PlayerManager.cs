@@ -10,8 +10,10 @@ namespace Player
     {
         public Color PlayerColor;
         public Transform SpawnPoint;
+        public Transform DeathPoint;
 
         [HideInInspector] public int playerID;
+        public bool isAlive;
         [HideInInspector] public string playerName;
         [HideInInspector] public GameObject playerInstance;
         [HideInInspector] public int numberOfWins;
@@ -38,29 +40,44 @@ namespace Player
             {
                 renderers[i].material.color = PlayerColor;
             }
+
+            isAlive = true;
         }
 
         public void EnableControls()
         {
+            _movement.SetKinamticState(false);
             _movement.enabled = true;
+            
             _attack.enabled = true;
             _listener.enabled = true;
         }
 
         public void DisableControls()
         {
+            _movement.SetKinamticState(true);
             _movement.enabled = false;
+            
             _attack.enabled = false;
             _listener.enabled = false;
         }
 
+        public void EliminatePlayer()
+        {
+            isAlive = false;
+            
+            playerInstance.transform.position = DeathPoint.position;
+            playerInstance.transform.rotation = DeathPoint.rotation;
+            
+            DisableControls();
+        }
+
         public void Reset()
         {
+            isAlive = true;
+            
             playerInstance.transform.position = SpawnPoint.position;
             playerInstance.transform.rotation = SpawnPoint.rotation;
-            
-            playerInstance.SetActive(false);
-            playerInstance.SetActive(true);
         }
     }
 }

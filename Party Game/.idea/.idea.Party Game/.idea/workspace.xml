@@ -56,12 +56,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CollisionListner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CollisionListener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" />
       </list>
     </option>
@@ -120,6 +120,7 @@
       <workItem from="1575391638254" duration="2537000" />
       <workItem from="1575394265803" duration="248000" />
       <workItem from="1575430492879" duration="5329000" />
+      <workItem from="1578353761309" duration="3796000" />
     </task>
     <servers />
   </component>

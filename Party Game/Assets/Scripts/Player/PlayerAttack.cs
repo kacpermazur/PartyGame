@@ -19,12 +19,13 @@ namespace Player
         {
             if (_attack >= 1)
             {
-                other.GetComponent<Rigidbody>().AddForce(transform.right * knockbackForce, ForceMode.Impulse);
+                other.GetComponent<Rigidbody>().AddRelativeForce(transform.right * knockbackForce, ForceMode.Impulse);
             }
         }
 
         public void OnAttack(InputAction.CallbackContext context)
         {
+            Debug.Log(context.canceled);
             _attack = context.ReadValue<float>();
         }
     }

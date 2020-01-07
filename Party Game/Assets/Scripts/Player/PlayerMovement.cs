@@ -30,16 +30,11 @@ namespace Player
             Jump(_jump);
         }
 
-        private void OnEnable()
+        public void SetKinamticState(bool state)
         {
-            //_rigidbody.isKinematic = false;
+            _rigidbody.isKinematic = state;
         }
-
-        private void OnDisable()
-        {
-            //_rigidbody.isKinematic = true;
-        }
-
+        
         private void Movement(Vector2 direction)
         {
             Vector3 dir = new Vector3(direction.x,0,direction.y);
