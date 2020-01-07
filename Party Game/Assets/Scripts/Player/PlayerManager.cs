@@ -15,14 +15,16 @@ namespace Player
         public Transform DeathPoint;
 
         [HideInInspector] public int playerID;
-        public bool isAlive;
+        [HideInInspector] public bool isAlive;
         [HideInInspector] public string playerName;
         [HideInInspector] public GameObject playerInstance;
         [HideInInspector] public int numberOfWins;
-        
+
         private PlayerMovement _movement;
         private PlayerAttack _attack;
         private CollisionListener _listener;
+        
+        
 
         public void Initialize()
         {
@@ -42,7 +44,7 @@ namespace Player
             {
                 renderers[i].material.SetColor("_BaseColor", PlayerColor);
             }
-
+            
             isAlive = true;
         }
 

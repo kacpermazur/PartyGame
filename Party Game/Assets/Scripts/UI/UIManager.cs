@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using Core;
 using Sound;
 using UnityEngine;
@@ -8,6 +9,9 @@ namespace UI.Panel
 {
     public class UIManager : MonoBehaviour, IInitializable
     {
+        [SerializeField] private InputActionAsset _inputActionAsset;
+        private InputActionMap _gameplayActionMap;
+        
         [SerializeField] private UIMainMenu _mainMenu;
         [SerializeField] private UIGame _uiGame;
         [SerializeField] private UIWinner _uiWinner;
@@ -20,6 +24,10 @@ namespace UI.Panel
         
         public void Initialize()
         {
+            _gameplayActionMap = _inputActionAsset.FindActionMap("Gameplay");
+            _gameplayActionMap.Disable();
+            
+            
             AddListeners();
             
             _uiPanels.Add(_mainMenu);
@@ -60,6 +68,7 @@ namespace UI.Panel
         {
             GameManager.instance.SoundManager.PlaySound("ui-click", SoundManager.SoundType.UI);
             OpenPanel(_uiGame);
+            _gameplayActionMap.Enable();
             GameManager.instance.StartGame();
         }
         

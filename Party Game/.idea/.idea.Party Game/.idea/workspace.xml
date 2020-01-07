@@ -69,7 +69,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/CollisionListener.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/TEST.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IInitializable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMainMenu.cs" />
@@ -81,6 +80,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Sound/SoundManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
       </list>
     </option>
@@ -142,6 +142,8 @@
       <workItem from="1578353761309" duration="9276000" />
       <workItem from="1578365363158" duration="14114000" />
       <workItem from="1578389039041" duration="1551000" />
+      <workItem from="1578396567386" duration="648000" />
+      <workItem from="1578397529643" duration="734000" />
     </task>
     <servers />
   </component>

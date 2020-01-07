@@ -12,6 +12,7 @@ public class OnPlayerEliminate : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             int playerID = other.GetComponent<PlayerMovement>().playerID;
+
             GameManager.instance.players[playerID].EliminatePlayer();
         }
     }
