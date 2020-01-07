@@ -15,7 +15,7 @@ namespace UI.Panel
 
         private UIState _state;
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             _state = UIState.NONE;
         }
