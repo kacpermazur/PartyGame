@@ -48,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0-preview.3/InputSystem/Plugins/Users/InputUser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/InputActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0-preview.3/InputSystem/Plugins/PlayerInput/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,6 +71,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IInitializable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
       </list>
     </option>
   </component>
@@ -128,7 +130,7 @@
       <workItem from="1575394265803" duration="248000" />
       <workItem from="1575430492879" duration="5329000" />
       <workItem from="1578353761309" duration="9276000" />
-      <workItem from="1578365363158" duration="1852000" />
+      <workItem from="1578365363158" duration="2929000" />
     </task>
     <servers />
   </component>
