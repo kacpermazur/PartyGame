@@ -44,6 +44,8 @@
     <setting file="file://$PROJECT_DIR$/ProjectSettings/AudioManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/CollisionListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@6.9.1-preview/Runtime/Core/Textures/RTHandleSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@6.9.1-preview/Runtime/Material/Lit/Lit.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Sound/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIWinner.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,13 +75,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIWinner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Sound/SoundClip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Sound/SoundManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
       </list>
     </option>
   </component>
@@ -139,6 +141,7 @@
       <workItem from="1575430492879" duration="5329000" />
       <workItem from="1578353761309" duration="9276000" />
       <workItem from="1578365363158" duration="14114000" />
+      <workItem from="1578389039041" duration="1551000" />
     </task>
     <servers />
   </component>

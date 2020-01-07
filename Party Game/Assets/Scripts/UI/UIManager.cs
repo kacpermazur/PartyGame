@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Sound;
 using UnityEngine;
 
 namespace UI.Panel
@@ -57,6 +58,7 @@ namespace UI.Panel
 
         private void OnBtnStartClicked()
         {
+            GameManager.instance.SoundManager.PlaySound("ui-click", SoundManager.SoundType.UI);
             OpenPanel(_uiGame);
             GameManager.instance.StartGame();
         }

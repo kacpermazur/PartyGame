@@ -40,7 +40,7 @@ namespace Player
 
             for (int i = 0; i < renderers.Length; i++)
             {
-                renderers[i].material.color = PlayerColor;
+                renderers[i].material.SetColor("_BaseColor", PlayerColor);
             }
 
             isAlive = true;
