@@ -67,7 +67,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/TEST.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/OnPlayerEliminate.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IInitializable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIMainMenu.cs" />
@@ -76,6 +75,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameRules/ScalingPlatform/ScalingMiniGame.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAttack.cs" />
       </list>
     </option>
   </component>
@@ -134,7 +134,7 @@
       <workItem from="1575394265803" duration="248000" />
       <workItem from="1575430492879" duration="5329000" />
       <workItem from="1578353761309" duration="9276000" />
-      <workItem from="1578365363158" duration="5200000" />
+      <workItem from="1578365363158" duration="5946000" />
     </task>
     <servers />
   </component>

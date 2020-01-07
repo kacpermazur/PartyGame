@@ -9,11 +9,8 @@ namespace Player
     public class PlayerAttack : MonoBehaviour
     {
         public int playerID = 1;
-
-        public float attackRate = 0.5f;
-        public float knockbackForce = 10.0f;
         
-        private float _attack;
+        public float knockbackForce = 10.0f;
 
         private bool _pressed;
         private bool _released;
@@ -35,20 +32,15 @@ namespace Player
         {
             if(context.started)
             {
-                Debug.Log("started: ");
                 _pressed = true;
                 _released = false;
             }
 
             if (context.canceled)
             {
-                Debug.Log("cancelled");
                 _pressed = false;
                 _released = true;
             }
-            
-            //_attack = context.ReadValue<float>();
-            //Debug.Log(_attack);
         }
     }
 }
