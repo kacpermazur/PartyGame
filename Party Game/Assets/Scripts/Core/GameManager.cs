@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using Player;
+using Sound;
 using TMPro;
 using UI.Panel;
 using UnityEngine.SceneManagement;
@@ -13,16 +14,22 @@ namespace Core
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance;
+        
+        [Header("Managers")] 
         [SerializeField] private UIManager _uiManger;
+        [SerializeField] private SoundManager _soundManager;
         
         public static GameManager instance => _instance;
         public UIManager UiManager => _uiManger;
+        public SoundManager SoundManager => _soundManager;
         
-        [Header("Game Settings")] public int numberOfRoundsToWin = 3;
+        [Header("Game Settings")] 
+        public int numberOfRoundsToWin = 3;
         public float startCountDown = 3.0f;
         public float endCountDown = 10.0f;
 
-        [Header("Game Setup")] public ScalingMiniGame _ScalingMiniGame;
+        [Header("Game Setup")] 
+        public ScalingMiniGame _ScalingMiniGame;
         public GameObject playerPrefab;
         public PlayerManager[] players;
 
@@ -44,6 +51,7 @@ namespace Core
             }
             
             _playerInputManager = PlayerInputManager.instance;
+            _soundManager.Initialize();
             _uiManger.Initialize();
             _uiManger.OpenPanel(_uiManger.MainMenuUI);
         }
@@ -62,7 +70,7 @@ namespace Core
             _uiManger.OpenPanel(_uiManger.InGameUI);
             _uiManger.InGameUI.ChangeMessageText("Waiting For Players!");
                 
-            
+            _soundManager.PlaySound("epicmusic", SoundManager.SoundType.MUSIC);
             StartCoroutine(Game());
         }
 
@@ -237,7 +245,7 @@ namespace Core
         private IEnumerator InRound()
         {
             EnablePlayersControls();
-            _uiManger.InGameUI.ChangeMessageText(String.Empty);
+            //_uiManger.InGameUI.ChangeMessageText(String.Empty);
 
             _ScalingMiniGame.StartMiniGame();
 

@@ -12,8 +12,8 @@ namespace Sound
         
         [SerializeField] private AudioMixer _masterMixer;
         
-        [SerializeField] private AudioSource _audioSourceMusic;
-        [SerializeField] private AudioSource _audioSourceSFX;
+        private AudioSource _audioSourceMusic;
+        private AudioSource _audioSourceSFX;
 
         [SerializeField] private SoundClip[] _soundClipsSFX;
         [SerializeField] private SoundClip[] _soundClipsMusic;
@@ -56,7 +56,7 @@ namespace Sound
                 case SoundType.MUSIC:
                     soundClip = Array.Find(_soundClipsMusic, clip => clip.name == name);
                     SetSettings(ref _audioSourceMusic, soundClip);
-                    _audioSourceSFX.Play();
+                    _audioSourceMusic.Play();
                     break;
                 default:
                     soundClip = null;
