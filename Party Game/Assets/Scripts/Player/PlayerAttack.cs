@@ -18,9 +18,6 @@ namespace Player
         private bool _pressed;
         private bool _released;
 
-        public Rigidbody testCase;
-        public Rigidbody testCase2;
-
         public void CollisionDetected(Collider other)
         {
             if (_pressed==true && _released==false)
@@ -31,7 +28,6 @@ namespace Player
                 Debug.Log("ATTACK");
 
                 other.gameObject.GetComponent<Rigidbody>().AddRelativeForce(transform.right * knockbackForce, ForceMode.Impulse);
-                other.GetComponent<TEST>().TestTarget();
             }
         }
 

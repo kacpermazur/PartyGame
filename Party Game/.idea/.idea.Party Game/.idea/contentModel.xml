@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="Core" t="Include">
             <e p="GameManager.cs" t="Include" />
+            <e p="IInitializable.cs" t="Include" />
             <e p="InputActions.cs" t="Include" />
           </e>
           <e p="GameRules" t="Include">
@@ -22,7 +23,10 @@
             <e p="PlayerAttack.cs" t="Include" />
             <e p="PlayerManager.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
-            <e p="TEST.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="UIMainMenu.cs" t="Include" />
+            <e p="UIPanel.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
