@@ -1,5 +1,7 @@
 ﻿using System;
+using Core;
 using Player;
+using Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,6 +66,8 @@ namespace Player
 
         public void EliminatePlayer()
         {
+            GameManager.instance.SoundManager.PlaySound("death", SoundManager.SoundType.SFX);
+            
             isAlive = false;
             
             playerInstance.transform.position = DeathPoint.position;

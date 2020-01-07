@@ -70,7 +70,7 @@ namespace Core
             _uiManger.OpenPanel(_uiManger.InGameUI);
             _uiManger.InGameUI.ChangeMessageText("Waiting For Players!");
                 
-            _soundManager.PlaySound("epicmusic", SoundManager.SoundType.MUSIC);
+            _soundManager.PlaySound("music", SoundManager.SoundType.MUSIC);
             StartCoroutine(Game());
         }
 
@@ -274,6 +274,7 @@ namespace Core
             
             if (_gameWinner != null)
             {
+                _soundManager.StopSound("music", SoundManager.SoundType.MUSIC);
                 _uiManger.OpenPanel(_uiManger.WinnerUI);
                 
                 string winner = _gameWinner.playerName + " WINS THE GAME!";

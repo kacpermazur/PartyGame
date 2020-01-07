@@ -65,42 +65,50 @@ namespace Sound
             }
         }
         
-        public void PlaySoundSpatialSfx(string name, GameObject gameObject)
+        public void PlaySoundSpatialSfx(string name, GameObject targetObject)
         {
             SoundClip soundClip = Array.Find(_soundClipsSFX, clip => clip.name == name);
             
-            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-
-            if (audioSource == soundClip.source)
+            if(soundClip.source == null)
             {
-                soundClip.source.Play();
-                Log("audio source FOUND!");
-            }
-            else if(audioSource != soundClip.source)
-            {
-                soundClip.source = audioSource;
+                soundClip.source = targetObject.AddComponent<AudioSource>();
                 
                 soundClip.source.clip = soundClip.clip;
                 soundClip.source.loop = soundClip.loop; 
                 soundClip.source.volume = soundClip.volume;
                 soundClip.source.spatialBlend = soundClip.spacialBlend; 
-                
-                soundClip.source.Play();
-                
+
                 Log("new audio source SET!");
             }
-            else
+
+            soundClip.source.Play();
+        }
+        
+        public void StopSound(string name, SoundType type)
+        {
+            SoundClip soundClip;
+            
+            switch (type)
             {
-                soundClip.source = gameObject.AddComponent<AudioSource>();
-                
-                soundClip.source.clip = soundClip.clip;
-                soundClip.source.loop = soundClip.loop; 
-                soundClip.source.volume = soundClip.volume;
-                soundClip.source.spatialBlend = soundClip.spacialBlend;
-                
-                soundClip.source.Play();
-                
-                Log("new audio source CREATED!");
+                case SoundType.SFX:
+                    soundClip = Array.Find(_soundClipsSFX, clip => clip.name == name);
+                    SetSettings(ref _audioSourceSFX, soundClip);
+                    _audioSourceSFX.Stop();
+                    break;
+                case SoundType.UI:
+                    soundClip = Array.Find(_soundClipsUI, clip => clip.name == name);
+                    SetSettings(ref _audioSourceSFX, soundClip);
+                    _audioSourceSFX.Stop();
+                    break;
+                case SoundType.MUSIC:
+                    soundClip = Array.Find(_soundClipsMusic, clip => clip.name == name);
+                    SetSettings(ref _audioSourceMusic, soundClip);
+                    _audioSourceMusic.Stop();
+                    break;
+                default:
+                    soundClip = null;
+                    Log("clip not found!");
+                    return;
             }
         }
 

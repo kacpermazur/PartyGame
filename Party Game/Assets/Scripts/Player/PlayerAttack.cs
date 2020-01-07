@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
+using Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +36,7 @@ namespace Player
             {
                 _pressed = true;
                 _released = false;
+                GameManager.instance.SoundManager.PlaySound("attack", SoundManager.SoundType.SFX);
             }
 
             if (context.canceled)
